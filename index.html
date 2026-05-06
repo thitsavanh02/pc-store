@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PC STORE | Đỉnh Cao Công Nghệ</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ===================== HEADER ===================== -->
+  <header>
+    <a href="index.html" style="text-decoration:none;">
+      <div class="logo">PC <span>STORE</span></div>
+    </a>
+
+    <nav>
+      <a href="pc-gaming.html">PC Gaming</a>
+      <a href="linh-kien.html">Linh Kiện</a>
+      <a href="console.html">Console</a>
+      <a href="gear.html">Gear</a>
+    </nav>
+
+    <div class="search-bar">
+      <input type="text" id="search-input" placeholder="Tìm kiếm sản phẩm..." autocomplete="off">
+      <button onclick="performSearch()" aria-label="Tìm kiếm">🔍</button>
+    </div>
+
+    <div class="cart-info" onclick="openCartModal()" role="button" aria-label="Mở giỏ hàng">
+      🛒 GIỎ HÀNG &nbsp;<span id="cart-count" class="badge">0</span>
+    </div>
+  </header>
+
+  <!-- ===================== HERO + SIDEBAR ===================== -->
+  <div class="home-top-section">
+    <aside class="sidebar-menu" aria-label="Danh mục sản phẩm">
+      <div class="sidebar-title">≡ &nbsp;DANH MỤC SẢN PHẨM</div>
+      <ul class="sidebar-list">
+        <li><a href="#">Xây dựng cấu hình PC <span>›</span></a></li>
+        <li><a href="pc-gaming.html">PC Gaming <span>›</span></a></li>
+        <li><a href="#">PC Đồ Họa AI <span>›</span></a></li>
+        <li><a href="#">Laptop - Máy Tính Xách Tay <span>›</span></a></li>
+        <li><a href="#">Màn Hình Máy Tính <span>›</span></a></li>
+        <li><a href="console.html">Máy chơi game - Console <span>›</span></a></li>
+        <li><a href="gear.html">Tay Cầm Chơi Game <span>›</span></a></li>
+        <li><a href="linh-kien.html">VGA - Card màn hình <span>›</span></a></li>
+        <li><a href="linh-kien.html">Linh kiện máy tính <span>›</span></a></li>
+        <li><a href="gear.html">Gaming Gears <span>›</span></a></li>
+      </ul>
+    </aside>
+
+    <div class="hero-wrapper">
+      <div class="hero-slider" role="region" aria-label="Banner sản phẩm">
+        <div class="slide active" style="background:linear-gradient(rgba(0,0,0,0.75),rgba(0,0,0,0.65)),url('https://images.unsplash.com/photo-1593640408182-31c70c8268f5?q=80&w=2000&auto=format&fit=crop') no-repeat center/cover;">
+          <div class="hero-content">
+            <h1>Giá rẻ<br>Hàng CHẤT</h1>
+            <p>Trải nghiệm PC Gaming, PS5, RTX 5060 Ti đỉnh nhất!</p>
+            <button class="btn-primary" onclick="window.location.href='all-products.html'">XEM TẤT CẢ SẢN PHẨM</button>
+          </div>
+        </div>
+        <div class="slide" style="background:linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.8)),url('photo/PC/250-13518-pc-gaming-tnc-turbo-ultra-01-11.jpg') no-repeat center/cover;">
+          <div class="hero-content">
+            <h1>PC ĐỒ HỌA AI</h1>
+            <p>Tối ưu công việc với cấu hình siêu mạnh</p>
+            <button class="btn-primary" onclick="window.location.href='pc-gaming.html'">XEM NGAY</button>
+          </div>
+        </div>
+        <div class="slide" style="background:linear-gradient(rgba(0,0,0,0.55),rgba(0,0,0,0.8)),url('photo/GAME CONSOLE/250-9012-ps5-1.jpg') no-repeat center/cover;">
+          <div class="hero-content">
+            <h1>PS5 CHÍNH HÃNG</h1>
+            <p>Chơi game cực đã — Bảo hành 1 đổi 1</p>
+            <button class="btn-primary" onclick="window.location.href='console.html'">MUA NGAY</button>
+          </div>
+        </div>
+
+        <button class="slider-btn prev" onclick="moveSlide(-1)" aria-label="Trước">&#10094;</button>
+        <button class="slider-btn next" onclick="moveSlide(1)"  aria-label="Tiếp">&#10095;</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== HIGHLIGHT CATEGORIES ===================== -->
+  <section class="highlight-categories">
+    <h2 class="section-title-blue">DANH MỤC NỔI BẬT</h2>
+    <div class="category-grid">
+      <a href="pc-gaming.html" class="cat-item">
+        <h4>PC GAMING</h4>
+        <p>Mua ngay — Giá đang rẻ</p>
+        <img src="photo/PC/250-13508-pc-gaming-tnc-turbo-pro-04-11.jpg" alt="PC Gaming" loading="lazy">
+      </a>
+      <a href="#" class="cat-item">
+        <h4>PC ĐỒ HỌA AI</h4>
+        <p>Tối ưu công việc — Tối thiểu giá thành</p>
+        <img src="photo/PC/250-13518-pc-gaming-tnc-turbo-ultra-01-11.jpg" alt="PC AI" loading="lazy">
+      </a>
+      <a href="linh-kien.html" class="cat-item">
+        <h4>VGA — CARD MÀN HÌNH</h4>
+        <p>Tổng kho VGA rẻ nhất</p>
+        <img src="photo/Card Màn Hình/250-12216-card-man-hinh-msi-geforce-rtx-5060ti-16g-gaming-trio-oc.jpg" alt="VGA" loading="lazy">
+      </a>
+      <a href="console.html" class="cat-item">
+        <h4>MÁY CHƠI GAME PS5</h4>
+        <p>Chính hãng — Giá rẻ — Bảo hành 1 đổi 1</p>
+        <img src="photo/GAME CONSOLE/250-9015-may-choi-game-sony-playstation-5-digital-edition-nhap-khau-2.jpg" alt="PS5" loading="lazy">
+      </a>
+    </div>
+  </section>
+
+  <!-- ===================== PRODUCTS ===================== -->
+  <div class="container">
+    <main>
+      <h2 class="section-title">🔥 SẢN PHẨM NỔI BẬT</h2>
+
+      <!-- Category Filter Tags -->
+      <div class="filter-bar" role="group" aria-label="Lọc danh mục">
+        <button class="filter-tag active" data-filter="all">TẤT CẢ</button>
+        <button class="filter-tag" data-filter="pc">PC GAMING</button>
+        <button class="filter-tag" data-filter="vga">VGA / CARD</button>
+        <button class="filter-tag" data-filter="console">CONSOLE</button>
+        <button class="filter-tag" data-filter="gear">GEAR</button>
+      </div>
+
+      <!-- Sort -->
+      <div class="sort-container">
+        <select id="sort-select" onchange="sortProducts()" aria-label="Sắp xếp theo giá">
+          <option value="">— Sắp xếp theo giá —</option>
+          <option value="asc">Giá: Thấp → Cao</option>
+          <option value="desc">Giá: Cao → Thấp</option>
+        </select>
+      </div>
+
+      <!-- Product Grid -->
+      <div class="product-grid">
+
+        <div class="product-card" data-category="vga">
+          <div class="badge-hot">MỚI</div>
+          <div onclick="viewProduct('VGA MSI RTX 5060 Ti 16G', 13500000, 'photo/Card Màn Hình/250-12216-card-man-hinh-msi-geforce-rtx-5060ti-16g-gaming-trio-oc.jpg')">
+            <img src="photo/Card Màn Hình/250-12216-card-man-hinh-msi-geforce-rtx-5060ti-16g-gaming-trio-oc.jpg" alt="VGA MSI RTX 5060 Ti" loading="lazy">
+            <h3>VGA MSI GeForce RTX 5060 Ti 16G GAMING TRIO</h3>
+          </div>
+          <p class="price">13,500,000 ₫</p>
+          <button class="btn-add" onclick="addToCart('VGA MSI RTX 5060 Ti 16G', 13500000, 'photo/Card Màn Hình/250-12216-card-man-hinh-msi-geforce-rtx-5060ti-16g-gaming-trio-oc.jpg')">
+            THÊM VÀO GIỎ
+          </button>
+        </div>
+
+        <div class="product-card" data-category="console">
+          <div onclick="viewProduct('PS5 Spider-Man 2', 15990000, 'photo/GAME CONSOLE/ps5.jpg')">
+            <img src="photo/GAME CONSOLE/ps5.jpg" alt="PS5 Spider-Man 2" loading="lazy">
+            <h3>Máy Sony PlayStation 5 — Marvel's Spider-Man 2</h3>
+          </div>
+          <p class="price">15,990,000 ₫</p>
+          <button class="btn-add" onclick="addToCart('PS5 Spider-Man 2', 15990000, 'photo/GAME CONSOLE/ps5.jpg')">
+            THÊM VÀO GIỎ
+          </button>
+        </div>
+
+        <div class="product-card" data-category="pc">
+          <div class="badge-hot">HOT</div>
+          <div onclick="viewProduct('PC TNC TURBO PRO 04', 18990000, 'photo/PC/250-13508-pc-gaming-tnc-turbo-pro-04-11.jpg')">
+            <img src="photo/PC/250-13508-pc-gaming-tnc-turbo-pro-04-11.jpg" alt="PC Gaming TNC" loading="lazy">
+            <h3>PC Gaming TNC TURBO PRO 04</h3>
+          </div>
+          <p class="price">18,990,000 ₫</p>
+          <button class="btn-add" onclick="addToCart('PC TNC TURBO PRO 04', 18990000, 'photo/PC/250-13508-pc-gaming-tnc-turbo-pro-04-11.jpg')">
+            THÊM VÀO GIỎ
+          </button>
+        </div>
+
+        <div class="product-card" data-category="gear">
+          <div onclick="viewProduct('PS5 DualSense Nova Pink', 1990000, 'photo/GAME CONSOLE/250-9029-tay-cam-choi-game-somy-ps5-dualsense-move-pink-avt-1.jpg')">
+            <img src="photo/GAME CONSOLE/250-9029-tay-cam-choi-game-somy-ps5-dualsense-move-pink-avt-1.jpg" alt="DualSense Nova Pink" loading="lazy">
+            <h3>Tay cầm PS5 DualSense — Nova Pink</h3>
+          </div>
+          <p class="price">1,990,000 ₫</p>
+          <button class="btn-add" onclick="addToCart('PS5 DualSense Nova Pink', 1990000, 'photo/GAME CONSOLE/250-9029-tay-cam-choi-game-somy-ps5-dualsense-move-pink-avt-1.jpg')">
+            THÊM VÀO GIỎ
+          </button>
+        </div>
+
+      </div><!-- /product-grid -->
+    </main>
+  </div>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer>
+    <div style="max-width:1400px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:30px;">
+      <div>
+        <h3 style="font-family:'Orbitron',monospace;color:#fff;font-size:20px;letter-spacing:3px;margin-bottom:20px;">
+          PC <span style="color:var(--red)">STORE</span>
+        </h3>
+        <p style="margin-bottom:10px;font-size:14px;">📍 123 Đường Công Nghệ, Quận 1, TP. HCM</p>
+        <p style="margin-bottom:10px;font-size:14px;">📞 Hotline: 1900 1234</p>
+        <p style="margin-bottom:10px;font-size:14px;">✉️ support@pcstore.vn</p>
+      </div>
+      <div>
+        <h4 style="font-family:'Orbitron',monospace;color:#fff;font-size:11px;letter-spacing:2px;margin-bottom:20px;">CHÍNH SÁCH</h4>
+        <ul style="list-style:none;line-height:2.5;">
+          <li><a href="#" style="color:var(--text-dim);text-decoration:none;font-size:14px;transition:0.2s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color=''">Chính sách bảo hành</a></li>
+          <li><a href="#" style="color:var(--text-dim);text-decoration:none;font-size:14px;transition:0.2s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color=''">Chính sách giao hàng</a></li>
+          <li><a href="#" style="color:var(--text-dim);text-decoration:none;font-size:14px;transition:0.2s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color=''">Chính sách đổi trả</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 style="font-family:'Orbitron',monospace;color:#fff;font-size:11px;letter-spacing:2px;margin-bottom:20px;">TỔNG ĐÀI HỖ TRỢ</h4>
+        <p style="margin-bottom:8px;font-size:14px;">Mua hàng: <strong style="color:#fff;font-family:'Orbitron',monospace;">1900 1234</strong></p>
+        <p style="margin-bottom:8px;font-size:14px;">Bảo hành: <strong style="color:#fff;font-family:'Orbitron',monospace;">1900 5678</strong></p>
+        <p style="margin-bottom:8px;font-size:14px;">Khiếu nại: <strong style="color:#fff;font-family:'Orbitron',monospace;">1900 9999</strong></p>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:40px;padding-top:20px;border-top:1px solid #1a1a1a;font-size:13px;color:var(--text-muted);">
+      © 2026 PC Store. Thiết kế bởi Sinh viên IT.
+    </div>
+  </footer>
+
+  <!-- ===================== CART MODAL ===================== -->
+  <div id="cart-modal" class="cart-modal-overlay" role="dialog" aria-modal="true" aria-label="Giỏ hàng">
+    <div id="cart-modal-content" class="cart-modal-content">
+      <div class="close-modal" onclick="closeCartModal()" role="button" aria-label="Đóng">✕</div>
+      <h2>Giỏ hàng của bạn</h2>
+      <ul id="modal-cart-items"></ul>
+
+      <div class="cart-total" style="margin-top:20px;">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;">
+          <span style="font-family:'Orbitron',monospace;font-size:10px;letter-spacing:2px;color:var(--text-muted);">TỔNG TIỀN</span>
+          <span id="modal-total-price" class="highlight">0 ₫</span>
+        </div>
+
+        <div class="promo-box">
+          <input type="text" id="promo-input" placeholder="MÃ GIẢM GIÁ" aria-label="Nhập mã giảm giá">
+          <button onclick="applyPromo()">ÁP DỤNG</button>
+        </div>
+      </div>
+
+      <button class="checkout-btn" onclick="window.location.href='checkout.html'">
+        ĐẾN TRANG THANH TOÁN →
+      </button>
+    </div>
+  </div>
+
+  <!-- ===================== RECEIPT MODAL ===================== -->
+  <div id="receipt-modal" class="receipt-overlay" role="dialog" aria-modal="true" aria-label="Hóa đơn đặt hàng">
+    <div class="receipt-box">
+      <div class="receipt-header">
+        <div class="receipt-check">✓</div>
+        <h2>Đặt Hàng Thành Công</h2>
+        <p>Cảm ơn bạn đã tin tưởng PC Store!</p>
+        <div class="receipt-id">MÃ ĐƠN: —</div>
+      </div>
+
+      <hr class="receipt-divider">
+
+      <div class="receipt-info">
+        <div class="receipt-info-item">
+          <label>Khách hàng</label>
+          <span id="receipt-customer">—</span>
+        </div>
+        <div class="receipt-info-item">
+          <label>Điện thoại</label>
+          <span id="receipt-phone">—</span>
+        </div>
+        <div class="receipt-info-item" style="grid-column:1/-1;">
+          <label>Địa chỉ giao hàng</label>
+          <span id="receipt-address">—</span>
+        </div>
+        <div class="receipt-info-item">
+          <label>Ngày đặt</label>
+          <span id="receipt-date">—</span>
+        </div>
+        <div class="receipt-info-item">
+          <label>Thanh toán</label>
+          <span id="receipt-payment">—</span>
+        </div>
+      </div>
+
+      <hr class="receipt-divider">
+
+      <div class="receipt-items"><!-- Populated by JS --></div>
+
+      <div class="receipt-total-row">
+        <span class="label">TỔNG THANH TOÁN</span>
+        <span class="amount receipt-amount">—</span>
+      </div>
+
+      <div class="receipt-actions">
+        <button class="btn-print" onclick="printReceipt()">🖨 IN HÓA ĐƠN</button>
+        <button class="btn-close-receipt" onclick="closeReceiptModal()">VỀ TRANG CHỦ</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

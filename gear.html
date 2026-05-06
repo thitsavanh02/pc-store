@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gaming Gear | PC STORE</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- HEADER -->
+  <header>
+    <a href="index.html" style="text-decoration:none;">
+      <div class="logo">PC <span>STORE</span></div>
+    </a>
+    <nav>
+      <a href="pc-gaming.html">PC Gaming</a>
+      <a href="linh-kien.html">Linh Kiện</a>
+      <a href="console.html">Console</a>
+      <a href="gear.html" style="color:var(--red);">Gear</a>
+    </nav>
+    <div class="search-bar">
+      <input type="text" id="search-input" placeholder="Tìm kiếm sản phẩm..." autocomplete="off">
+      <button onclick="performSearch()" aria-label="Tìm kiếm">🔍</button>
+    </div>
+    <div class="cart-info" onclick="openCartModal()" role="button" aria-label="Mở giỏ hàng">
+      🛒 GIỎ HÀNG &nbsp;<span id="cart-count" class="badge">0</span>
+    </div>
+  </header>
+
+  <!-- PRODUCTS -->
+  <div class="container" style="padding-top: 40px;">
+    <main>
+      <h2 class="section-title">🎧 GAMING GEAR</h2>
+      <div class="product-grid">
+        
+        <div class="product-card" data-category="gear">
+          <div onclick="viewProduct('Bàn phím Razer BlackWidow', 1200000, 'photo/game/250-10485-ban-phim-co-razer-blackwidow-v4-x-green-switch-rz03-04700100-r3m1--1-.jpg')">
+            <img src="photo/game/250-10485-ban-phim-co-razer-blackwidow-v4-x-green-switch-rz03-04700100-r3m1--1-.jpg" alt="Keyboard" loading="lazy">
+            <h3>Bàn phím Razer BlackWidow V4 X green switch</h3>
+          </div>
+          <p class="price">1,200,000 ₫</p>
+          <button class="btn-add" onclick="addToCart('Bàn phím Razer BlackWidow', 1200000, 'photo/game/250-10485-ban-phim-co-razer-blackwidow-v4-x-green-switch-rz03-04700100-r3m1--1-.jpg')">THÊM VÀO GIỎ</button>
+        </div>
+
+        <div class="product-card" data-category="gear">
+          <div onclick="viewProduct('Ghế Gaming Razer Enki', 3500000, 'photo/game/250-13175-ghe-gaming-razer-enki-black-green-rz38-03720100-r3u1.jpg')">
+            <img src="photo/game/250-13175-ghe-gaming-razer-enki-black-green-rz38-03720100-r3u1.jpg" alt="Chair" loading="lazy">
+            <h3>Ghế Gaming Razer Enki Black Green</h3>
+          </div>
+          <p class="price">3,500,000 ₫</p>
+          <button class="btn-add" onclick="addToCart('Ghế Gaming Razer Enki', 3500000, 'photo/game/250-13175-ghe-gaming-razer-enki-black-green-rz38-03720100-r3u1.jpg')">THÊM VÀO GIỎ</button>
+        </div>
+
+        <div class="product-card" data-category="gear">
+          <div onclick="viewProduct('Màn Hình LG 32GS95UV', 8000000, 'photo/game/250-11626-man-hinh-gaming-lg-ultragear-32gs95uv-b--6-.jpg')">
+            <img src="photo/game/250-11626-man-hinh-gaming-lg-ultragear-32gs95uv-b--6-.jpg" alt="Monitor" loading="lazy">
+            <h3>Màn Hình Gaming LG Ultragear 32GS95UV-B</h3>
+          </div>
+          <p class="price">8,000,000 ₫</p>
+          <button class="btn-add" onclick="addToCart('Màn Hình LG 32GS95UV', 8000000, 'photo/game/250-11626-man-hinh-gaming-lg-ultragear-32gs95uv-b--6-.jpg')">THÊM VÀO GIỎ</button>
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+  <!-- FOOTER & MODALS -->
+  <footer>
+    <div style="text-align:center;margin-top:40px;padding-top:20px;border-top:1px solid #1a1a1a;font-size:13px;color:var(--text-muted);">
+      © 2026 PC Store. Thiết kế bởi Sinh viên IT.
+    </div>
+  </footer>
+  <div id="cart-modal" class="cart-modal-overlay" role="dialog" aria-modal="true" aria-label="Giỏ hàng">
+    <div id="cart-modal-content" class="cart-modal-content">
+      <div class="close-modal" onclick="closeCartModal()" role="button" aria-label="Đóng">✕</div>
+      <h2>Giỏ hàng của bạn</h2><ul id="modal-cart-items"></ul>
+      <div class="cart-total" style="margin-top:20px;">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;">
+          <span style="font-family:'Orbitron',monospace;font-size:10px;letter-spacing:2px;color:var(--text-muted);">TỔNG TIỀN</span>
+          <span id="modal-total-price" class="highlight">0 ₫</span>
+        </div>
+        <div class="promo-box"><input type="text" id="promo-input" placeholder="MÃ GIẢM GIÁ"><button onclick="applyPromo()">ÁP DỤNG</button></div>
+      </div>
+      <button class="checkout-btn" onclick="window.location.href='checkout.html'">ĐẾN TRANG THANH TOÁN →</button>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thanh Toán | PC STORE</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- HEADER -->
+  <header>
+    <a href="index.html" style="text-decoration:none;">
+      <div class="logo">PC <span>STORE</span></div>
+    </a>
+    <nav>
+      <a href="pc-gaming.html">PC Gaming</a>
+      <a href="linh-kien.html">Linh Kiện</a>
+      <a href="console.html">Console</a>
+      <a href="gear.html">Gear</a>
+    </nav>
+    <div class="search-bar" style="visibility:hidden;"></div>
+    <div class="cart-info" onclick="openCartModal()" role="button" aria-label="Mở giỏ hàng">
+      🛒 GIỎ HÀNG &nbsp;<span id="cart-count" class="badge">0</span>
+    </div>
+  </header>
+
+  <!-- CHECKOUT -->
+  <div class="container checkout-container" style="padding-top:40px;">
+    <main class="checkout-form-section">
+      <h2 class="section-title">THÔNG TIN GIAO HÀNG</h2>
+      <form id="checkout-form">
+        <div class="form-group">
+          <label for="fullname">Họ và tên *</label>
+          <input type="text" id="fullname" name="fullname" required placeholder="Ví dụ: Nguyễn Văn A">
+        </div>
+        <div class="form-group">
+          <label for="phone">Số điện thoại *</label>
+          <input type="tel" id="phone" name="phone" required placeholder="0912345678">
+        </div>
+        <div class="form-group">
+          <label for="address">Địa chỉ nhận hàng *</label>
+          <input type="text" id="address" name="address" required placeholder="Số nhà, tên đường, phường/xã, quận/huyện...">
+        </div>
+        <div class="form-group">
+          <label for="payment">Phương thức thanh toán</label>
+          <select id="payment" name="payment" style="background:var(--bg-deep);color:#fff;border:1px solid var(--border);padding:12px;border-radius:var(--radius-sm);outline:none;">
+            <option value="cod">Thanh toán khi nhận hàng (COD)</option>
+            <option value="bank">Chuyển khoản qua ngân hàng</option>
+            <option value="momo">Thanh toán qua ví MoMo</option>
+          </select>
+        </div>
+      </form>
+    </main>
+
+    <aside class="cart-sidebar">
+      <h2 style="font-family:'Orbitron',monospace;font-size:14px;color:#fff;border-bottom:1px solid var(--border);padding-bottom:15px;margin-bottom:15px;">ĐƠN HÀNG CỦA BẠN</h2>
+      <ul id="checkout-items" class="checkout-item-list"></ul>
+      <div class="cart-total" style="border-top:1px solid var(--border);padding-top:15px;margin-top:15px;">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;">
+          <span style="font-family:'Orbitron',monospace;font-size:10px;letter-spacing:2px;color:var(--text-muted);">TỔNG CỘNG</span>
+          <span id="checkout-total" class="highlight">0 ₫</span>
+        </div>
+      </div>
+      <button type="submit" form="checkout-form" class="checkout-btn" style="margin-top:20px;">
+        XÁC NHẬN ĐẶT HÀNG →
+      </button>
+    </aside>
+  </div>
+
+  <!-- FOOTER & MODALS -->
+  <footer>
+    <div style="text-align:center;margin-top:40px;padding-top:20px;border-top:1px solid #1a1a1a;font-size:13px;color:var(--text-muted);">
+      © 2026 PC Store. Thiết kế bởi Sinh viên IT.
+    </div>
+  </footer>
+  <div id="cart-modal" class="cart-modal-overlay" role="dialog" aria-modal="true" aria-label="Giỏ hàng">
+    <div id="cart-modal-content" class="cart-modal-content">
+      <div class="close-modal" onclick="closeCartModal()" role="button" aria-label="Đóng">✕</div>
+      <h2>Giỏ hàng của bạn</h2><ul id="modal-cart-items"></ul>
+      <div class="cart-total" style="margin-top:20px;">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;">
+          <span style="font-family:'Orbitron',monospace;font-size:10px;letter-spacing:2px;color:var(--text-muted);">TỔNG TIỀN</span>
+          <span id="modal-total-price" class="highlight">0 ₫</span>
+        </div>
+        <div class="promo-box"><input type="text" id="promo-input" placeholder="MÃ GIẢM GIÁ"><button onclick="applyPromo()">ÁP DỤNG</button></div>
+      </div>
+      <button class="checkout-btn" onclick="closeCartModal()">ĐÓNG GIỎ HÀNG</button>
+    </div>
+  </div>
+
+  <!-- RECEIPT MODAL -->
+  <div id="receipt-modal" class="receipt-overlay" role="dialog" aria-modal="true" aria-label="Hóa đơn đặt hàng">
+    <div class="receipt-box">
+      <div class="receipt-header">
+        <div class="receipt-check">✓</div>
+        <h2>Đặt Hàng Thành Công</h2>
+        <p>Cảm ơn bạn đã tin tưởng PC Store!</p>
+        <div class="receipt-id">MÃ ĐƠN: —</div>
+      </div>
+      <hr class="receipt-divider">
+      <div class="receipt-info">
+        <div class="receipt-info-item"><label>Khách hàng</label><span id="receipt-customer">—</span></div>
+        <div class="receipt-info-item"><label>Điện thoại</label><span id="receipt-phone">—</span></div>
+        <div class="receipt-info-item" style="grid-column:1/-1;"><label>Địa chỉ</label><span id="receipt-address">—</span></div>
+        <div class="receipt-info-item"><label>Ngày đặt</label><span id="receipt-date">—</span></div>
+        <div class="receipt-info-item"><label>Thanh toán</label><span id="receipt-payment">—</span></div>
+      </div>
+      <hr class="receipt-divider">
+      <div class="receipt-items"></div>
+      <div class="receipt-total-row">
+        <span class="label">TỔNG THANH TOÁN</span>
+        <span class="amount receipt-amount">—</span>
+      </div>
+      <div class="receipt-actions">
+        <button class="btn-print" onclick="printReceipt()">🖨 IN HÓA ĐƠN</button>
+        <button class="btn-close-receipt" onclick="closeReceiptModal()">VỀ TRANG CHỦ</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

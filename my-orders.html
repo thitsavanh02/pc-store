@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>ประวัติการสั่งซื้อ | PC STORE</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <a href="index.html" style="text-decoration:none;">
+      <div class="logo">PC <span>STORE</span></div>
+    </a>
+    <nav>
+      <a href="pc-gaming.html">PC Gaming</a>
+      <a href="linh-kien.html">Linh Kiện</a>
+      <a href="console.html">Console</a>
+      <a href="gear.html">Gear</a>
+      <a href="my-orders.html" style="color: var(--cyan); border-bottom: 1px solid var(--cyan);">📦 My Orders</a>
+    </nav>
+  </header>
+
+  <div class="container" style="padding-top:40px; min-height: 60vh;">
+    <main>
+      <h2 class="section-title">📦 ค้นหาประวัติการสั่งซื้อ</h2>
+      
+      <div style="background:var(--bg-panel); padding:20px; border-radius:var(--radius-lg); margin-bottom:20px; border:1px solid var(--border);">
+        <p style="color:var(--text-dim); margin-bottom:10px; font-size:14px;">กรุณากรอกอีเมลที่ใช้ในการสั่งซื้อ เพื่อดูสถานะสินค้า</p>
+        <div style="display:flex; gap:10px;">
+          <input type="email" id="search-email" placeholder="ใส่อีเมลของคุณ..." style="padding:12px; width:300px; border-radius:var(--radius-sm); border:1px solid var(--border); background:var(--bg-deep); color:#fff; outline:none; font-family:var(--font-body);">
+          <button onclick="fetchMyOrders()" class="btn-primary" style="padding:12px 20px;">ค้นหาประวัติ</button>
+        </div>
+      </div>
+
+      <div id="order-results" style="display:flex; flex-direction:column; gap:20px;"></div>
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+  <script>
+    async function fetchMyOrders() {
+      const email = document.getElementById('search-email').value.trim();
+      if(!email) return alert('กรุณากรอกอีเมลก่อนค้นหาครับ');
+
+      const resultsDiv = document.getElementById('order-results');
+      resultsDiv.innerHTML = '<p style="color:var(--cyan);">กำลังค้นหาข้อมูลจากระบบ...</p>';
+
+      try {
+        // ขอข้อมูลประวัติจาก Backend (Node.js)
+        const response = await fetch('http://localhost:3000/my-orders', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email: email })
+        });
+        
+        const orders = await response.json();
+
+        if (orders.length === 0) {
+          resultsDiv.innerHTML = '<p style="color:var(--text-dim);">ไม่พบประวัติการสั่งซื้อสำหรับอีเมลนี้ (ลองเช็คว่าสะกดอีเมลถูกไหม)</p>';
+          return;
+        }
+
+        // วาดหน้าจอแสดงประวัติ
+        resultsDiv.innerHTML = orders.reverse().map(order => `
+          <div style="background:var(--bg-card); padding:20px; border:1px solid var(--border); border-radius:var(--radius-lg);">
+            <div style="display:flex; justify-content:space-between; border-bottom:1px dashed var(--border); padding-bottom:10px; margin-bottom:15px;">
+              <strong style="color:var(--cyan); font-family:var(--font-hud);">รหัสคำสั่งซื้อ: ${order.orderId}</strong>
+              <span style="color:var(--text-dim); font-size:12px;">${order.date}</span>
+            </div>
+            <ul style="list-style:none; padding:0; margin-bottom:15px;">
+              ${order.items.map(i => `
+                <li style="font-size:14px; margin-bottom:5px; display:flex; justify-content:space-between;">
+                  <span>${i.name} <span style="color:var(--text-muted);">x${i.quantity}</span></span>
+                  <span style="color:var(--red); font-family:var(--font-hud);">${(i.price * i.quantity).toLocaleString('vi-VN')} ₫</span>
+                </li>
+              `).join('')}
+            </ul>
+            <div style="margin-top:15px; padding:10px; background:var(--bg-deep); border-radius:var(--radius-sm); display:flex; justify-content:space-between; align-items:center;">
+              <span style="color:#00e676; font-weight:bold; font-size:14px;">🚚 สถานะ: ${order.status}</span>
+              <strong style="color:var(--red); font-family:var(--font-hud); font-size: 16px;">ยอดรวม: ${order.total.toLocaleString('vi-VN')} ₫</strong>
+            </div>
+          </div>
+        `).join('');
+
+      } catch (err) {
+        resultsDiv.innerHTML = '<p style="color:var(--red);">ไม่สามารถเชื่อมต่อเซิร์ฟเวอร์ได้ (กรุณาเช็คว่ารัน node server.js อยู่หรือไม่)</p>';
+      }
+    }
+  </script>
+</body>
+</html>
